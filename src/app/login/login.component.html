@@ -1,0 +1,61 @@
+<div>
+  <img src="" />
+</div>
+<div class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand heading"
+      ><h3>Hello there, Sign in to continue</h3>
+    </a>
+  </div>
+</div>
+
+<div class="container-fluid py-3">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-6">
+      <label class="form-label heading fontl">Username/Email</label>
+      <input
+        formControlName="email"
+        class="form-control form-control-sm"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        required
+      />
+
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+      </div>
+    </div>
+
+    <div class="col-md-6 py-3">
+      <label class="form-label heading fontl">Password</label>
+      <input
+        type="password"
+        class="form-control form-control-sm"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        required
+      />
+
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">password is required</div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <p class="heading">
+        <input type="checkbox" ng-model="checked" /> By creating or logging in
+        to account, your agreeing with our<b>Term & conditions</b> and
+        <b>Privecy policy</b>
+      </p>
+    </div>
+    <div class="col">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.dirty"
+        ng-disabled="!checked"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>
